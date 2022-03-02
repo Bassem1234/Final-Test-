@@ -80,5 +80,5 @@ this.livreService.deleteLivre(this.livres[input]._id, this.livres[input].categor
   alert('livre deleted successfully!!')
   window.location.reload();
 })
- }
+}
 }
