@@ -1,0 +1,82 @@
+<section style="margin-top: 20mm; max-width: 90%; margin-bottom: 10mm;">
+    <div class="row" *ngFor="let cat of categories; let i =index">
+        <div class="col-3"></div>
+        <div class="col-lg-6">
+            <div class="card mb-3" style="max-width: 540px; padding-bottom: 3mm;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">{{cat.nomcategorie}}</h5>
+                            <p class="card-text">Livres: <span *ngFor="let livre of cat.listeDesLivres">
+                                {{livre.Titre}}</span></p>
+                            <p class="card-text"><small class="text-muted" *ngIf="user.profile == 'admin'">
+                                    <button class="btn btn-outline-success"
+                                        style="border-radius: 0%; margin-right: 2mm;" (click)="addLivre(i)">add Livre</button>
+                                    <button class="btn btn-outline-danger" style="border-radius: 0%;" (click)="deleteCat(i)">delete
+                                        Category</button>
+                                </small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+                <form [formGroup]="livreForm" *ngIf="liv">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" placeholder="Livre Name" formControlName="Titre">
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" placeholder="Author" formControlName="Auteur">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 2mm;">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <textarea name="" id="" cols="56.9" rows="3" class="form_control" formControlName="Description"
+                                placeholder="Describe your livre"></textarea>
+                        </div>
+                        <div class="row" style="margin-top: 2mm;">
+                            <div class="col-2"></div>
+                            <div class="col-8">
+                                <label for="livre">Attach livre</label>
+
+                                <input class="form-control" type="file" accept="pdf*" (change)="onChange($event)">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 3mm;">
+                            <div class="col-4"></div>
+                            <div class="col-6">
+                                <button class="btn btn-warning" 
+                                    style="border-radius: 0%; margin-right: 2mm;" (click)="saveLiv()" 
+                                    [disabled]="livreForm.invalid">add</button>
+                                <button class="btn btn-outline-danger" style="border-radius: 0%;" (click)="dismissLiv()">dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+   <form [formGroup]="catForm">
+        <div class="row" style="margin-top: 4mm;" *ngIf="cate">
+            <div class="col-3"></div>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" style="border-radius: 0;" placeholder="Category name"
+                    formControlName="nomcategorie">
+                <button class=" btn btn-outline-success" style="border-radius: 0%; margin-top: 4mm; margin-right: 2mm;"
+                    (click)="saveCat()">save</button>
+                <button class=" btn btn-outline-danger" style="border-radius: 0%;margin-top: 4mm;" (click)="disCat()">dismiss</button>
+            </div>
+        </div>
+    </form>
+    <div class="row" style="margin-top: 2mm;" *ngIf="user.profile == 'admin'">
+        <div class="col-4"></div>
+        <div class="col-lg-4">
+            <button class="btn btn-success" style="border-radius: 0%;" (click)="addCategory()" [disabled]="cate">New Category</button>
+        </div>
+    </div>
+</section>

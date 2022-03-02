@@ -1,0 +1,23 @@
+<section style="margin-top: 50mm;">
+    <form [formGroup]="loginForm">
+    <div class="row" style="margin-top: 3mm;">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3mm;">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="password" class="form-control" placeholder="your password" formControlName="password">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3mm;">
+        <div class="col-4"></div>
+        <div class="col-4 text-center">
+            <button class="btn btn-outline-success" (click)="logIn()">Log in</button><br>
+            <span>Don't have an account? <a routerLink="/register">Register</a></span>
+        </div>
+    </div>
+</form>
+</section>

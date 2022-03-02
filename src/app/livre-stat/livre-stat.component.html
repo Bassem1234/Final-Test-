@@ -1,0 +1,18 @@
+<section style="margin-top: 20mm; max-width: 90%; margin-bottom: 10mm;">    
+    <div class="row" *ngFor="let livre of livres; let i= index">
+        <div class="col-3"></div>
+        <div class="col-lg-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">{{livre.Titre}}</h5>
+                            <p class="card-text">{{livre.category}}</p>
+                            <p class="card-text">{{livre.DowTimes}} Téléchargements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

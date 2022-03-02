@@ -1,0 +1,80 @@
+<section style="margin-top: 20mm; max-width: 90%; margin-bottom: 10mm;">
+    <div class="row" *ngFor="let item of livres; let i = index">
+        <div class="col-3"></div>
+        <div class="col-lg-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.Titre}}</h5>
+                            <p class="card-text">{{item.Description}}</p>
+                            <p class="card-text">Auteur: {{item.Auteur}}</p>
+                            <p class="card-text">Catégorie: {{item.category}}</p>
+                            <p class="card-text">Contenue: <a target="_blank" href="http://localhost:3000/upload/{{item.Contenue}}">{{item.Contenue}}</a></p>
+                            <p class="card-text"><small class="text-muted">
+                                <button class="btn btn-warning" (click)="downloadLivre(i)" style="border-radius: 0%; margin-right: 2mm;" *ngIf="user.profile != 'User'">
+                                    download</button>
+                                    <button class="btn btn-outline-danger" style="border-radius: 0%;" *ngIf="user.profile == 'admin'" (click)="deleteLiv(i)">
+                                        delete</button>
+                                </small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div *ngIf="liv">
+    <form [formGroup]="livreForm" >
+        <div class="row" >
+            <div class="col-3"></div>
+            <div class="col-2">
+                <input type="text" class="form-control" placeholder="Livre Name" formControlName="Titre">
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control" placeholder="Author" formControlName="Auteur">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 2mm;">
+            <div class="col-3"></div>
+            <div class="col-8">
+                <textarea name="" id="" cols="57" rows="3" class="form_control" formControlName="Description"
+                    placeholder="Describe your livre"></textarea>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2mm;">
+            <div class="col-3"></div>
+            <div class="col-4">
+                <label for="livre">Attach livre</label>
+
+                <input class="form-control" type="file" accept="pdf*" (change)="onChange($event)">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 3mm;">
+            <div class="col-3"></div>
+            <div class="col-4">
+                <select class="form-control" formControlName="category">
+                    <option>Category</option>
+                    <option *ngFor="let cat of categories">{{cat.nomcategorie}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 3mm;">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <button class="btn btn-warning" style="border-radius: 0%; margin-right: 2mm;" 
+                    (click)="addLivre()">add</button>
+                <button class="btn btn-outline-danger" style="border-radius: 0%;">dismiss</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <div class="row" style="margin-top: 5mm;" *ngIf="user.profile == 'admin'">
+        <div class="col-4"></div>
+        <div class="col-lg-4">
+            <button class="btn btn-success" (click)="newLivre()">New Livre</button>
+        </div>
+    </div>
+</section>
